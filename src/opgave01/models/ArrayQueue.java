@@ -18,17 +18,20 @@ public class ArrayQueue<E> implements Queue<E>{
 
     @Override
     public E remove() {
-        Node current = new Node<>(front);
+        E element = (E) front.getElement();
         if (isEmpty()){
             throw new NoSuchElementException("Listen er tom");
         }
-        current.getNext();
-        return (E) current;
+        front = front.next;
+        return element;
     }
 
     @Override
     public E element() {
-        return null;
+        if (isEmpty()){
+            throw new NoSuchElementException("Listen er tom");
+        }
+        return (E) front.getElement();
     }
 
     @Override
@@ -38,12 +41,19 @@ public class ArrayQueue<E> implements Queue<E>{
 
     @Override
     public void clear() {
-
+        front = null;
+        back = null;
     }
 
     @Override
     public int size() {
-        return 0;
+        int count = 0;
+        Node current = new Node<>(front);
+        while (current != null){
+            count++;
+            current = current.next;
+        }
+        return count;
     }
     public class Node<E> {
         private E element;

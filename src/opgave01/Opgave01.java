@@ -10,8 +10,9 @@ public class Opgave01 {
         list.add("Alice");
         list.add("William");
         list.add("Christian");
+        list.clear();
 
-        System.out.println(list.remove());
+        System.out.println(list);
 
     }
 }
